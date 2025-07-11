@@ -1,0 +1,4 @@
+module.exports = ROLE = {
+  GUEST: 'GUEST_ROLE_MEMBER',
+  DRIVER: "DRIVER_ROLE_MEMBER"
+}
