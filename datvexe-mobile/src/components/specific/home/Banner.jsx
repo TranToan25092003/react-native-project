@@ -1,10 +1,17 @@
 import React from 'react';
 import { Image, StyleSheet } from 'react-native';
-const bannerData = [];
+const bannerData = [
+    require('../../../assets/banner1.png'),
+    require('../../../assets/banner2.png'),
+    require('../../../assets/banner3.png'),
+    require('../../../assets/banner4.png')
+];
 
 const Banner = () => {
     return (
-        <Swiper>
+        <Swiper
+
+        >
             <Image source={require('../../assets/imageBanner/1.jpg')} style={styles.bannerImage} />
             <Image source={require('../../assets/imageBanner/2.jpg')} style={styles.bannerImage} />
             <Image source={require('../../assets/imageBanner/3.jpg')} style={styles.bannerImage} />
