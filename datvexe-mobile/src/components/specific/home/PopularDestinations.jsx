@@ -43,27 +43,85 @@ const popularDestinations = [
 
 const PopularDestinations = () => {
     const navigation = useNavigation();
-    const renderDestination = ({item}) => (
-        <TouchableOpacity>
-            <Image />
-            <View>
-                <Text></Text>
-                <View>
-                    <Text></Text>
-                    <View>
-                        <Icon />
-                        <Text></Text>
+    const renderDestination = ({ item }) => (
+        <TouchableOpacity style={styles.destinationCard} onPress={() => navigation.navigate("LocationScreen")}>
+            <Image source={item.image} style={styles.destinationImage} />
+            <View style={styles.destinationInfo}>
+                <Text style={styles.destinationTitle}> {item.title} </Text>
+                <View style={styles.destinationMeta}>
+                    <Text style={styles.destinationPrice}>Từ {item.price}</Text>
+                    <View style={styles.durationContainer}>
+                        <Icon name="access-time" size={16} color="black" />
+                        <Text style={styles.destinationDuration}>{item.duration}</Text>
                     </View>
                 </View>
             </View>
         </TouchableOpacity>
     );
 
-    return(
+    return (
         <FlatList />
     );
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+    destinationsContainer: {
+        padding: 16,
+        backgroundColor: "#f9f9f9",
+    },
+    sectionTitle: {
+        fontSize: 18,
+        fontWeight: "bold",
+        color: "#333",
+        marginBottom: 12,
+    },
+    listContent: {
+        paddingBottom: 16,
+    },
+    columnWrapper: {
+        justifyContent: "space-between",
+        marginBottom: 16,
+    },
+    destinationCard: {
+        flex: 1,
+        backgroundColor: "#fff",
+        borderRadius: 12,
+        overflow: "hidden",
+        shadowOffset: { width: 0, height: 2 },
+        elevation: 3,
+    },
+    destinationImage: {
+        borderRadius: 12,
+        width: "100%",
+        height: 120,
+    },
+    destinationInfo: {
+        padding: 12,
+    },
+    destinationTitle: {
+        fontSize: 16,
+        fontWeight: "bold",
+        color: "#333",
+        marginBottom: 8,
+    },
+    destinationMeta: {
+        flexDirection: "row",
+        justifyContent: "space-between",
+        alignItems: "center",
+    },
+    destinationPrice: {
+        fontSize: 14,
+        fontWeight: "600",
+        color: "#FF6347",
+    },
+    durationContainer: {
+        flexDirection: "row",
+        alignItems: "center",
+    },
+    destinationDuration: {
+        fontSize: 14,
+        color: "#555",
+    },
+});
 
 export default PopularDestinations;
