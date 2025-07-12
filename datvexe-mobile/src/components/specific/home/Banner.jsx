@@ -10,14 +10,15 @@ const bannerData = [
 const Banner = () => {
     return (
         <Swiper
-
+            showsPagination={false}
+            autoplay={true}
+            loop={true}
+            height={200}
+            activeDotColor="#FF6347"
         >
-            <Image source={require('../../assets/imageBanner/1.jpg')} style={styles.bannerImage} />
-            <Image source={require('../../assets/imageBanner/2.jpg')} style={styles.bannerImage} />
-            <Image source={require('../../assets/imageBanner/3.jpg')} style={styles.bannerImage} />
-            <Image source={require('../../assets/imageBanner/4.jpg')} style={styles.bannerImage} />
-            <Image source={require('../../assets/imageBanner/5.jpg')} style={styles.bannerImage} />
-            <Image source={require('../../assets/imageBanner/6.jpg')} style={styles.bannerImage} />
+            {bannerData.map((image, index) => (
+                <Image key={index} source={image} style={styles.bannerImage} />
+            ))}
         </Swiper>
     )
 };
