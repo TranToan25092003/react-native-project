@@ -1,8 +1,9 @@
 import React from 'react';
-import { FlatList, StyleSheet } from "react-native";
+import {FlatList, Text, TouchableOpacity, View, StyleSheet} from "react-native";
+import ActionSheet from "react-native-actions-sheet";
 
-const ActionSheetLocation = ({ actionSheetRefLocation, currentLocationType, dataLocation, selectLocation }) => {
-    const renderLocationItem = ({ item }) => {
+const ActionSheetLocation = ({actionSheetRefLocation, currentLocationType, dataLocation, selectLocation}) => {
+    const renderLocationItem = ({item}) => {
         return (
             <View>
                 <Text style={styles.cityHeader}>{item.tenTinh}</Text>
@@ -23,7 +24,7 @@ const ActionSheetLocation = ({ actionSheetRefLocation, currentLocationType, data
 
     return (
         <ActionSheet ref={actionSheetRefLocation} gestureEnabled={true}>
-            <View style={{ height: 300 }}>
+            <View style={{height: 300}}>  {/* Thêm chiều cao để đảm bảo hiển thị */}
                 <Text style={styles.locationActionSheetTitle}>
                     {currentLocationType === "start" ? "Chọn điểm xuất phát" : "Chọn điểm đến"}
                 </Text>
@@ -37,23 +38,29 @@ const ActionSheetLocation = ({ actionSheetRefLocation, currentLocationType, data
             </View>
         </ActionSheet>
     )
-};
+}
 
 const styles = StyleSheet.create({
     locationActionSheet: {
         padding: 100,
+    },
+    locationActionSheetTitle: {
+        fontSize: 18,
+        fontWeight: 'bold',
+        marginBottom: 16,
+        textAlign: 'center',
+    },
+    locationList: {
+        flex: 1,
+    },
+    locationGroup: {
+        marginBottom: 30,
     },
     cityHeader: {
         fontSize: 20,
         fontWeight: 'bold',
         paddingHorizontal: 20,
         marginBottom: 8,
-    },
-    locationList: {
-        flex: 1
-    },
-    locationGroup: {
-        marginBottom: 16
     },
     stationItem: {
         paddingVertical: 12,
@@ -65,12 +72,6 @@ const styles = StyleSheet.create({
         fontSize: 16,
         color: '#333',
     },
-    locationActionSheetTitle: {
-        fontSize: 18,
-        fontWeight: 'bold',
-        marginBottom: 16,
-        textAlign: 'center',
-    },
-});
+})
 
 export default ActionSheetLocation;

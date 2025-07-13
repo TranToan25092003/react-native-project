@@ -12,13 +12,13 @@ import {
 
 const { width, height } = Dimensions.get('window');
 
-const VietQRPayment = ({ route, navigation }) => {
+const VietQRPayment = ({route, navigation}) => {
     const urlVietQr = route.params.urlVietQr;
     const dataBooking = route.params.dataBooking;
     const dataBanking = route.params.dataBanking;
 
     const handleOpenBookingSuccess = () => {
-        navigation.navigate("BookingSuccessScreen", { dataBooking: dataBooking })
+        navigation.navigate("BookingSuccessScreen", {dataBooking: dataBooking})
     }
 
     return (

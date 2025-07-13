@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
-import { View, ActivityIndicator, StyleSheet, SafeAreaView, Text, Button, Alert } from "react-native";
-import { WebView } from "react-native-webview";
+import React, {useState, useEffect} from "react";
+import {View, ActivityIndicator, StyleSheet, SafeAreaView, Text, Button, Alert} from "react-native";
+import {WebView} from "react-native-webview";
 import PaymentService from "../../../service/booking/PaymentService";
-import { showCustomToast } from "../../common/notifice/CustomToast";
+import {showCustomToast} from "../../common/notifice/CustomToast";
 
-const VNPayPayment = ({ navigation, route }) => {
+const VNPayPayment = ({navigation, route}) => {
     const [loading, setLoading] = useState(false);
     const urlVnPayQr = route.params.urlVnPayQr;
     const dataBooking = route.params.dataBooking;
@@ -18,9 +18,9 @@ const VNPayPayment = ({ navigation, route }) => {
     //     setLoading(false);
     // }, [route]);
 
-    const handleNavigationStateChange = async (navState) => {
-        try {
-            const { url } = navState;
+    const handleNavigationStateChange = async(navState) => {
+        try{
+            const {url} = navState;
             console.log("Current URL:", url);
 
             const params = new URLSearchParams(url.split("?")[1]);
@@ -34,14 +34,14 @@ const VNPayPayment = ({ navigation, route }) => {
                     paymentMethod: "VNPay"
                 }
                 const resData = await PaymentService.updateStatusPayment(dataReq);
-                if (resData.status === 200) {
-                    navigation.replace("BookingSuccessScreen", { dataBooking: dataBooking })
-                } else {
+                if(resData.status === 200) {
+                    navigation.replace("BookingSuccessScreen", {dataBooking: dataBooking})
+                }else{
                     showCustomToast(resData.message);
                 }
             }
-        } catch (e) {
-            console.log(e.message);
+        }catch (e) {
+           console.log(e.message);
         }
     };
 
@@ -49,7 +49,7 @@ const VNPayPayment = ({ navigation, route }) => {
         <SafeAreaView style={styles.container}>
             {!paymentStatus ? (
                 <WebView
-                    source={{ uri: urlVnPayQr }}
+                    source={{uri: urlVnPayQr}}
                     onNavigationStateChange={handleNavigationStateChange}
                 />
             ) : (

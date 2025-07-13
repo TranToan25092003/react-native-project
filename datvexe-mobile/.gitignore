@@ -30,6 +30,8 @@ yarn-error.*
 *.pem
 
 # local env files
+package-lock.json
+
 .env*.local
 
 # typescript
