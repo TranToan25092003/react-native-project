@@ -8,7 +8,6 @@ async function connect() {
   try {
     console.log(process.env.URL_DB_DEV);
     await mongoose.connect(process.env.URL_DB_DEV);
-
     console.log("Kết nối cơ sở dữ liệu thành công !!!");
   } catch (error) {
     console.log("Kết nối cơ sở dữ liệu thất bại!!!");
