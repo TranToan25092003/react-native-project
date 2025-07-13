@@ -3,8 +3,8 @@ import { Image, StyleSheet } from 'react-native';
 const bannerData = [
     require('../../../assets/banner1.png'),
     require('../../../assets/banner2.png'),
-    require('../../../assets/banner3.png'),
-    require('../../../assets/banner4.png')
+    require('../../../assets/banner3.jpg'),
+    require('../../../assets/banner4.jpg')
 ];
 
 const Banner = () => {
