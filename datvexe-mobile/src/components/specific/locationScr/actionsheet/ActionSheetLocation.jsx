@@ -5,7 +5,7 @@ const ActionSheetLocation = ({ actionSheetRefLocation, currentLocationType, data
     const renderLocationItem = ({ item }) => {
         return (
             <View>
-                <Text> {item.tenTinh} </Text>
+                <Text styles={styles.cityHeader}> {item.tenTinh} </Text>
                 {
                     item.benXe.map((station) => (
                         <TouchableOpacity
@@ -13,7 +13,7 @@ const ActionSheetLocation = ({ actionSheetRefLocation, currentLocationType, data
                             style={styles.stationItem}
                             onPress={() => selectLocation(station)}
                         >
-                            <Text> {station.tenBenXe} </Text>
+                            <Text style={styles.stationText}> {station.tenBenXe} </Text>
                         </TouchableOpacity>
                     ))
                 }
@@ -24,10 +24,10 @@ const ActionSheetLocation = ({ actionSheetRefLocation, currentLocationType, data
     return (
         <ActionSheet ref={actionSheetRefLocation} gestureEnabled={true}>
             <View>
-                <Text> 
-                    {currentLocationType === "start" ? "Chọn điểm xuất phát" : "Chọn điểm đến"} 
-                    </Text> 
-                <FlatList 
+                <Text style={styles.locationActionSheetTitle}>
+                    {currentLocationType === "start" ? "Chọn điểm xuất phát" : "Chọn điểm đến"}
+                </Text>
+                <FlatList
                     data={dataLocation}
                     renderItem={renderLocationItem}
                     keyExtractor={item => item._id || Math.random().toString()}
@@ -38,7 +38,22 @@ const ActionSheetLocation = ({ actionSheetRefLocation, currentLocationType, data
 };
 
 const styles = StyleSheet.create({
-
+    cityHeader: {
+        fontSize: 16,
+        fontWeight: 'bold',
+        marginBottom: 8
+    },
+    stationItem: {
+        paddingVertical: 12,
+        paddingHorizontal: 16,
+        borderBottomWidth: 1
+    },
+    locationActionSheetTitle: {
+        fontSize: 20,
+        fontWeight: 'bold',
+        marginBottom: 16,
+        textAlign: 'center'
+    }
 });
 
 export default ActionSheetLocation;
