@@ -44,10 +44,10 @@ const styles = StyleSheet.create({
         padding: 100,
     },
     cityHeader: {
-        fontSize: 16,
+        fontSize: 20,
         fontWeight: 'bold',
+        paddingHorizontal: 20,
         marginBottom: 8,
-        textAlign: 'center'
     },
     locationList: {
         flex: 1
@@ -57,19 +57,20 @@ const styles = StyleSheet.create({
     },
     stationItem: {
         paddingVertical: 12,
-        paddingHorizontal: 16,
-        borderBottomWidth: 1
+        paddingHorizontal: 50,
+        borderBottomWidth: 1,
+        borderBottomColor: '#E0E0E0',
     },
     stationText: {
         fontSize: 16,
-        color: '#333'
+        color: '#333',
     },
     locationActionSheetTitle: {
-        fontSize: 20,
+        fontSize: 18,
         fontWeight: 'bold',
         marginBottom: 16,
-        textAlign: 'center'
-    }
+        textAlign: 'center',
+    },
 });
 
 export default ActionSheetLocation;
