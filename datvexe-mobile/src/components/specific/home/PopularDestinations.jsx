@@ -60,7 +60,15 @@ const PopularDestinations = () => {
     );
 
     return (
-        <FlatList />
+        <FlatList 
+            data={popularDestinations}
+            renderItem={renderDestination}
+            keyExtractor={(item) => item.id.toString()}
+            numColumns={2} 
+            columnWrapperStyle={styles.columnWrapper}
+            contentContainerStyle={styles.listContent}
+            scrollEnabled={false}
+        />
     );
 }
 
@@ -87,13 +95,18 @@ const styles = StyleSheet.create({
         backgroundColor: "#fff",
         borderRadius: 12,
         overflow: "hidden",
+        marginHorizontal: 8,
+        shadowColor: "#000",
         shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.1,
+        shadowRadius: 4,
         elevation: 3,
     },
     destinationImage: {
         borderRadius: 12,
         width: "100%",
         height: 120,
+        resizeMode: "cover",
     },
     destinationInfo: {
         padding: 12,
@@ -121,6 +134,7 @@ const styles = StyleSheet.create({
     destinationDuration: {
         fontSize: 14,
         color: "#555",
+        marginLeft: 4,
     },
 });
 
