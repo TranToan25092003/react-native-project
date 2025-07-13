@@ -5,7 +5,7 @@ const ActionSheetLocation = ({ actionSheetRefLocation, currentLocationType, data
     const renderLocationItem = ({ item }) => {
         return (
             <View>
-                <Text styles={styles.cityHeader}> {item.tenTinh} </Text>
+                <Text style={styles.cityHeader}>{item.tenTinh}</Text>
                 {
                     item.benXe.map((station) => (
                         <TouchableOpacity
@@ -13,7 +13,7 @@ const ActionSheetLocation = ({ actionSheetRefLocation, currentLocationType, data
                             style={styles.stationItem}
                             onPress={() => selectLocation(station)}
                         >
-                            <Text style={styles.stationText}> {station.tenBenXe} </Text>
+                            <Text style={styles.stationText}>{station.tenBenXe}</Text>
                         </TouchableOpacity>
                     ))
                 }
@@ -23,14 +23,16 @@ const ActionSheetLocation = ({ actionSheetRefLocation, currentLocationType, data
 
     return (
         <ActionSheet ref={actionSheetRefLocation} gestureEnabled={true}>
-            <View>
+            <View style={{ height: 300 }}>
                 <Text style={styles.locationActionSheetTitle}>
                     {currentLocationType === "start" ? "Chọn điểm xuất phát" : "Chọn điểm đến"}
                 </Text>
                 <FlatList
                     data={dataLocation}
                     renderItem={renderLocationItem}
-                    keyExtractor={item => item._id || Math.random().toString()}
+                    keyExtractor={(item) => item._id || Math.random().toString()}
+                    style={styles.locationList}
+                    contentContainerStyle={styles.listContent}
                 />
             </View>
         </ActionSheet>
@@ -38,15 +40,29 @@ const ActionSheetLocation = ({ actionSheetRefLocation, currentLocationType, data
 };
 
 const styles = StyleSheet.create({
+    locationActionSheet: {
+        padding: 100,
+    },
     cityHeader: {
         fontSize: 16,
         fontWeight: 'bold',
-        marginBottom: 8
+        marginBottom: 8,
+        textAlign: 'center'
+    },
+    locationList: {
+        flex: 1
+    },
+    locationGroup: {
+        marginBottom: 16
     },
     stationItem: {
         paddingVertical: 12,
         paddingHorizontal: 16,
         borderBottomWidth: 1
+    },
+    stationText: {
+        fontSize: 16,
+        color: '#333'
     },
     locationActionSheetTitle: {
         fontSize: 20,
