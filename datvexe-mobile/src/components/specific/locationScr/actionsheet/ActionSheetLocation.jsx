@@ -22,16 +22,20 @@ const ActionSheetLocation = ({ actionSheetRefLocation, currentLocationType, data
     };
 
     return (
-        <ActionSheet>
+        <ActionSheet ref={actionSheetRefLocation} gestureEnabled={true}>
             <View>
-                <Text>Chọn điểm xuất phát</Text>
-                <Text>Chọn điểm đến</Text>
-                <FlatList />
+                <Text> 
+                    {currentLocationType === "start" ? "Chọn điểm xuất phát" : "Chọn điểm đến"} 
+                    </Text> 
+                <FlatList 
+                    data={dataLocation}
+                    renderItem={renderLocationItem}
+                    keyExtractor={item => item._id || Math.random().toString()}
+                />
             </View>
         </ActionSheet>
     )
 };
-
 
 const styles = StyleSheet.create({
 
