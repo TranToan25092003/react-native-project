@@ -12,7 +12,6 @@ class authController {
   }
 
   async login(req, res) {
-    console.log("9999999999999999999999999999999999999");
     try {
       const res_data = await authService.login(req.body);
       resExport(200, "Đăng nhập thành công !", res_data, res);

@@ -1,10 +1,10 @@
-const express = require('express');
-require('dotenv').config();
-const cors = require('cors');
-const logRequest = require('../src/middleware/LogRequestMiddleware');
-const passport = require('passport');
+const express = require("express");
+require("dotenv").config();
+const cors = require("cors");
+const logRequest = require("../src/middleware/LogRequestMiddleware");
+const passport = require("passport");
 const app = express();
-const server = require('http').createServer(app);
+const server = require("http").createServer(app);
 
 // Middleware xử lý dữ liệu request
 app.use(express.json());
@@ -13,29 +13,45 @@ app.use(logRequest);
 
 // Cấu hình bảo mật, CORS
 app.use(cors({ origin: "*" }));
-require('../src/configs/Auth');
+
+app.get("/promotion", async (req, res) => {
+  try {
+    const promotion = await DiscountModel.find();
+    return res.status(200).json({
+      data: promotion,
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(401).json({
+      message: "Something wrong",
+    });
+  }
+});
+
+require("../src/configs/Auth");
 
 // Kết nối Database
-const { connect } = require('../src/database/db');
+const { connect } = require("../src/database/db");
 connect();
 
 // Cấu hình Template Engine
-const configViewEngine = require('../src/configs/ViewEngine');
+const configViewEngine = require("../src/configs/ViewEngine");
 configViewEngine(app);
 
 // Cấu hình bảo mật
-const security = require('../src/configs/Security');
+const security = require("../src/configs/Security");
 security(app);
 
 const initSocket = require("../src/configs/socket");
-initSocket(server)
+initSocket(server);
 
-const setupSwagger = require('../src/swagger/swagger');
+const setupSwagger = require("../src/swagger/swagger");
 setupSwagger(app);
 
 // Định tuyến chính
-const router = require('../src/routes/MainRouter');
+const router = require("../src/routes/MainRouter");
 app.use(router);
 
-const { startServer } = require('../src/configs/PortCustom');
+const { startServer } = require("../src/configs/PortCustom");
+const DiscountModel = require("../src/models/booking/Discount.model");
 startServer(server);
